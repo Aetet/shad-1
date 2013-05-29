@@ -22,25 +22,30 @@ void c_strcat() {
 }
 
 void c_concat() {
-	char hello[] = { 'H', 'e', 'l', 'l', 'o', '\0' };
-	char world[] = { ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0' };
-	
-	for (int i = 0; i < 6; i++) {
-		if (hello[i] == '\0') {
-        	for (int j = 0; j < 9; j++) {
-                int index = 5 + j;
-                hello[index] = world[j];
-    		} 
-	    }
+	char str1[100] = "Hello";
+    char str2[] = ", World!";
+
+	char *p; /* points str1 */
+	char *q; /* points str2 */ 
+
+
+	for (p = str1; *p != 0; p++) { 
+		/* skip along till the end */ 
+	}
+	/* here p points to '\0' in str1 */
+
+	/* now we start to copy characters from str2 to str1 */
+	for (q = str2; *q != 0; p++, q++ ) {
+		*p = *q;
 	}
 
-	cout << hello << endl;
+	cout << str1 << endl;
 }
 
 int main() {
 	cpp_concat();
 	c_strcat();
-	//c_concat();
+	c_concat();
 
 	return 0;
 }
