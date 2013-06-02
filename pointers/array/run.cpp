@@ -15,8 +15,8 @@ void array_address_ariphmetics(char *str) {
 }
 
 void dispaly_array_pointers(int *x[]) {
-	for (int i = 0; i < 3; i++) {
-		cout << "index is: " << i << ", value is: " << *x[i] << endl;	
+	for (int i = 0; i < 2; i++) {
+		cout << "index is: " << i << ", value is: " << x[i] << endl;	
 	}
 }
 
@@ -30,10 +30,8 @@ int main() {
 	int *x[2];
 	int var0 = 10;
 	int var1 = 20;
-	int var2 = 30;
 	x[0] = &var0;
 	x[1] = &var1;
-	x[2] = &var2;
 
 	dispaly_array_pointers(x);
 
