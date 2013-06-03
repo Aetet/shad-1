@@ -67,6 +67,21 @@ void pointers_plus_minus()
 	cout << "int pointer: " << static_cast<void*>(i) << endl;
 }
 
+void multilevel_pointers()
+{
+	int x;
+	int *p;
+	int **q;
+
+	x = 10;
+	p = &x;
+	q = &p;
+
+	cout << q << endl;
+	cout << *q << endl;
+	cout << **q << endl;
+}
+
 int main()
 {
 	//get_variable_address();
@@ -74,6 +89,7 @@ int main()
 	//assign_pointers_same_type();
 	//assign_pointers_different_type_problem();
 	//pointers_plus_minus();
+	multilevel_pointers();
 
 	return 0;
 }
