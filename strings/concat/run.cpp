@@ -21,20 +21,15 @@ void c_strcat() {
 	cout << hello << endl;
 }
 
-void c_concat() {
+void c_concat_for() {
 	char str1[100] = "Hello";
     char str2[] = ", World!";
 
-	char *p; /* points str1 */
-	char *q; /* points str2 */ 
+	char *p;
+	char *q;
 
+	for (p = str1; *p != 0; p++) {}	
 
-	for (p = str1; *p != 0; p++) { 
-		/* skip along till the end */ 
-	}
-	/* here p points to '\0' in str1 */
-
-	/* now we start to copy characters from str2 to str1 */
 	for (q = str2; *q != 0; p++, q++ ) {
 		*p = *q;
 	}
@@ -42,10 +37,34 @@ void c_concat() {
 	cout << str1 << endl;
 }
 
+void c_concat_while() {
+	char str1[100] = "Hello";
+    char str2[] = ", World!";
+
+	char *p;
+	char *q;
+
+	p = str1;
+	q = str2;
+		
+	while (*p) {
+		p++;
+	}	
+	
+	while (*q) {
+		*p = *q;
+		p++;
+		q++;
+	}
+
+	cout << str1 << endl;
+}
+
 int main() {
-	cpp_concat();
-	c_strcat();
-	c_concat();
+	//cpp_concat();
+	//c_strcat();
+	c_concat_for();
+	c_concat_while();
 
 	return 0;
 }
