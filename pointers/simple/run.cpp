@@ -46,7 +46,8 @@ void assign_pointers_different_type_problem()
 	p = (int *) &x;
 	y = *p;
 
-	cout << "y value is: " << y << endl;
+	cout << "p value is: " << *p << endl;
+	cout << "y value is: " << std::fixed << y << endl;
 }
 
 void pointers_plus_minus()
@@ -87,9 +88,9 @@ int main()
 	//get_variable_address();
 	//get_variable_by_address();
 	//assign_pointers_same_type();
-	//assign_pointers_different_type_problem();
+	assign_pointers_different_type_problem();
 	//pointers_plus_minus();
-	multilevel_pointers();
+	//multilevel_pointers();
 
 	return 0;
 }
