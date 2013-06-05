@@ -83,14 +83,23 @@ void multilevel_pointers()
 	cout << **q << endl;
 }
 
+void pointer_init()
+{
+	int foo = 5;
+	int *foo_ptr = &foo;
+
+	cout << "Address: " << foo_ptr << ", Value: " << *foo_ptr << endl;
+}
+
 int main()
 {
 	//get_variable_address();
 	//get_variable_by_address();
 	//assign_pointers_same_type();
-	assign_pointers_different_type_problem();
+	//assign_pointers_different_type_problem();
 	//pointers_plus_minus();
 	//multilevel_pointers();
+	pointer_init();
 
 	return 0;
 }
