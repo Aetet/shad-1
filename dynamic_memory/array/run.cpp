@@ -53,28 +53,25 @@ void init_flat_pointers_of_pointers() {
 
 void init_2_malloc() {
 	int n = 4;
-	int *m = (int*)malloc(sizeof(int)*n*n);
-	int **p = (int**)malloc(sizeof(int*)*n);
-
-	p[0] = &m[0];
-	p[1] = &m[4];
-	p[2] = &m[8];
-	p[3] = &m[12];
+	int **array2 = (int**)malloc(n * sizeof(int*));
 	
-	for (int i = 0; i < n; i++) {
+	array2[0] = (int*)malloc(n * n * sizeof(int));
+	
+	for (int i = 1; i < n; i++) {
+		array2[i] = array2[0] + i * n;
+	}	
+	
+	array2[0][1] = 11;
+	array2[3][3] = 22;
 
-	}
-
-	free(m);
-	m = NULL;
-	free(p);
-	p = NULL;
+	cout << array2[0][1] << endl;
+	cout << array2[3][3] << endl;
 }
 
 int main() {
 	//init_flat_multi_array();
 	//init_flat_pointers_of_pointers();
-	//??init_2_malloc();
+	init_2_malloc();
 
 	return 0;
 }
