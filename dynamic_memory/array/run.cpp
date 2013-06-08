@@ -66,6 +66,7 @@ void init_2_malloc() {
 
 	cout << array2[0][1] << endl;
 	cout << array2[3][3] << endl;
+	cout << array2[0][15] << endl;
 }
 
 int main() {
