@@ -19,6 +19,12 @@ void use_reference(int a, int b, int &result)
 	cout << "Reference in after: " << result << endl;	
 }
 
+void pass_by_const_reference(const int &b)
+{
+	cout << "Address of param: " << &b << endl;
+	b = 10;
+}
+
 int main() 
 {
 	int ret = 0;	
@@ -29,6 +35,8 @@ int main()
 	ret = use_return(a, b);
 	cout << "Return values is: " << ret << endl;
 
+	cout << "-------------" << endl;
+
 	use_pointer(a, b, p);
 	cout << "Pointer value is: " << *p << endl;
 	
@@ -36,7 +44,12 @@ int main()
 
 	cout << "Reference out before: " << ret << endl;
 	use_reference(a, b, ret);
-	cout << "Reference out after: " << ret << endl;	
+	cout << "Reference out after: " << ret << endl;
+
+	cout << "-------------" << endl;
+
+	cout << "Address of b: " << &b << endl;
+	//pass_by_const_reference(b);
 
 	return 0;
 }
