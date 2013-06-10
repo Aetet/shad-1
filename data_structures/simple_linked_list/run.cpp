@@ -1,19 +1,31 @@
 #include <iostream>
+#include <stdlib.h>
+
+using namespace std;
 
 struct node {
 	int data;
 	node *next;
-} element;
+};
 
-void add_node(node *i, node **last) {
-	if (!*last) *last = i; // List first element;
-	else (*last).next = i; 
-	i.next = NULL;
-	*last = i;
-}
+int main() 
+{
+	node *curr, *head;
+	head = NULL;
 
-int main() {
-	element.data = 5;
+	for (int i = 1; i <= 10; i++) {
+		curr = (node*)malloc(sizeof(node));
+		curr->data = i;
+		curr->next = head;
+		head = curr;
+	}
+
+	curr = head;
+
+	while (curr) {
+		cout << curr->data << endl;
+		curr = curr->next;
+	}
 
 	return 0;
 }
