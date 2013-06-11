@@ -1,24 +1,28 @@
 #include <iostream>
 #include <stdlib.h>
+#include "run.h"
 
 using namespace std;
 
-struct node
-{
-	int data;
-	node *next;
-};
-
 node *head = NULL;
+
+node *create_node()
+{
+	node *result = new node;
+	if (!result) {
+		cout << "Out of memory" << endl;
+		exit(0);
+	}
+
+	return result;
+}
 
 void insert_front(int data)
 {
-	node *temp;
-
-	temp = (node*)malloc(sizeof(node));
-	temp->data = data;
-	temp->next = head;
-	head = temp;
+	node *insert = create_node();
+	insert->data = data;
+	insert->next = head;
+	head = insert;
 }
 
 void insert_back(int data)
@@ -26,90 +30,155 @@ void insert_back(int data)
 	if (head == NULL) {
 		insert_front(data);
 	} else {
-		node *temp1;
-
-		temp1 = (node*)malloc(sizeof(node));
-		temp1 = head;
+		node *curr = head;
 		
-		while (temp1->next != NULL) {
-			temp1 = temp1->next;
+		while (curr->next != NULL) {
+			curr = curr->next;
 		}
 
-		node *temp;
-
-		temp = (node*)malloc(sizeof(node));
-		temp->data = data;
-		temp->next = NULL;
-		temp1->next = temp;
+		node *insert = create_node();
+		insert->data = data;
+		insert->next = NULL;
+		curr->next = insert;
 	}	
 }
 
 void insert_after(int pos, int data)
 {
-	node *temp1;
-
-	temp1 = (node*)malloc(sizeof(node));
-	temp1 = head;
+	node *curr = head;
 
 	for (int i = 1; i < pos; i++) {
-		temp1 = temp1->next;
+		curr = curr->next;
 
-		if (temp1 == NULL) {
+		if (curr == NULL) {
 			cout << "Can't insert after node " << pos << ". It doestn't exist." << endl;
 			return;
 		}
 	}
 
-	node *temp;
-
-	temp = (node*)malloc(sizeof(node));
-	temp->data = data;
-	temp->next = temp1->next;
-	temp1->next = temp;	
+	node *insert = create_node();
+	insert->data = data;
+	insert->next = curr->next;
+	curr->next = insert;	
 }
 
 void delete_front()
 {
-	node *temp;
+	node *del = create_node();
+	del = head;
+	head = del->next;
+	delete del;
+}
 
-	temp = (node*)malloc(sizeof(node));
-	temp = head;
-	head = temp->next;
-	free(temp);
+void delete_back()
+{
+	node *del = head;
+	node *prev = create_node();
+ 
+	while (del->next != NULL) {
+      prev = del;
+      del = del->next;
+	}
+
+	prev->next = NULL;
+	delete del;
+}
+
+void delete_node(int pos)
+{
+	if (pos == 1) {
+		delete_front();
+	} else {
+		node *del = head;
+	 
+		node *prev = create_node();
+		prev = del;
+		
+		for (int i = 1; i < pos; i++) {
+	    	prev = del;
+	    	del = del->next;
+		}
+
+		prev->next = del->next;
+		delete del;
+	}	
+}
+
+void sort_nodes()
+{
+	node *curr1 = create_node();
+	node *curr2 = create_node();
+	 
+	int temp = 0;
+	 
+	for (curr1 = head; curr1 != NULL; curr1 = curr1->next) {
+	      for (curr2 = curr1->next; curr2 != NULL; curr2 = curr2->next) {
+	            if (curr1->data > curr2->data) {
+	                temp = curr1->data;
+	                curr1->data = curr2->data;
+	                curr2->data = temp;
+	            }
+	      }
+	}	
 }
 
 void traverse()
 {
-	node *temp1;
+	node *curr = head;
 	
-	temp1 = head;
-	cout << "Traversing via singly linked list: " << endl;
-	while (temp1 != NULL) {
-		cout << temp1->data << endl;
-		temp1 = temp1->next;
+	while (curr != NULL) {
+		cout << curr->data << endl;
+		curr = curr->next;
 	}
 }
 
 int main()
 {
+	cout << "Insert Front:" << endl;
 	insert_front(10);
 	insert_front(20);
 	insert_front(30);
 	insert_front(40);
+	traverse();
+	cout << "-----------" << endl;
 	
+	cout << "Insert Back:" << endl;
 	insert_back(50);
 	insert_back(60);
 	insert_back(70);
+	traverse();
+	cout << "-----------" << endl;
 	
-	delete_front();
-	delete_front();
-
+	cout << "Insert Position:" << endl;	
 	insert_after(2, 80);
 	insert_after(2, 90);
 	insert_after(7, 100);
-	insert_after(6, 110);	
-
+	insert_after(6, 110);
 	traverse();
+	cout << "-----------" << endl;
+
+	cout << "Delete Front:" << endl;	
+	delete_front();
+	delete_front();
+	traverse();
+    cout << "-----------" << endl;
+	
+	cout << "Delete Back:" << endl;	
+	delete_back();
+	delete_back();
+	traverse();
+	cout << "-----------" << endl;
+
+	cout << "Delete Node:" << endl;	
+	delete_node(1);
+	delete_node(1);
+	traverse();
+	cout << "-----------" << endl;
+	
+	cout << "Sort Nodes:" << endl;	
+	sort_nodes();	
+	traverse();
+	cout << "-----------" << endl;	
 
 	return 0;
 }
