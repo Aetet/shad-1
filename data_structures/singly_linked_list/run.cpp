@@ -54,7 +54,7 @@ void insert_after(int pos, int data)
 	for (int i = 1; i < pos; i++) {
 		temp1 = temp1->next;
 
-		if (temp1 == 0) {
+		if (temp1 == NULL) {
 			cout << "Can't insert after node " << pos << ". It doestn't exist." << endl;
 			return;
 		}
